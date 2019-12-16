@@ -1,8 +1,15 @@
-# Salted_ML_Workflow
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
+- [Salted_ML_Workflow](#salted_ml_workflow)
 
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Introduction
+## Salted_ML_Workflow
+A luigi workflow based face detection package
+
+### Introduction
 This is a machine learning project that is incorporated within the luigi framework.
 The program automatically detects changes in the training input and testing input to 
 determine the required action using [luigi tasks](https://github.com/spotify/luigi).
@@ -14,7 +21,7 @@ in order to avoid repetitive work.
 The end result is a workflow that could take in training data, trains a model that can 
 detect faces in a testing image and then predicts the person's gender and age. 
 
-## Demo:
+### Demo:
 To get started with the project, set up environment with
 
 `pipenv install --ignore-pipfile`
@@ -35,11 +42,11 @@ as part of the repo. For the most up-to-date model, contact Yuheng Chen at yc180
 For general questions, watch the tutorial on [YouTube]() or contact the authors at yiy521@g.harvard.edu
 or yc1800@nyu.edu.
 
-## Input and output
+### Input and output
 This project needs two steps in order to achieve the goal above. First, it needs to extract
 the faces from an image. Then, cropping and normalizing the detected face, it is then able
 to predict the gender and age.
-### Detector
+#### Detector
 The detector is used to detect the face region on an image. Training images and a .xml file
  containing labels denoting the face locations. 
  
@@ -53,7 +60,7 @@ codes accordingly
 - enter `python FaceDetection/trainDetector.py`
 - you should get your new .svm model in your `pretrained_models` folder
 
-### Analyzer
+#### Analyzer
 After being able to detect faces, we need to be able to predict the gender and age.
 To do this manually, use 
 
@@ -67,8 +74,9 @@ Then, train using the generated database:
 
 To finish training. The resulting model should be in `checkpoints` folder.
 
-## Workflow
-### Testing
+### Workflow
+
+#### Testing
 In an industrial setting, data is fluid and is constantly changing. New data may be
 added and old data such as out-dated files could be deleted. 
 
@@ -78,7 +86,7 @@ file is added or removed, it will incur a re-run of the testing tasks. Original 
 will not be touched, additional images will be processed, and removed images will cause 
 their output to be removed. 
 
-### Training
+#### Training
 Periodically, new data can be added to train the model to be more accurate or to adapt
  to latest characteristics. The luigi workflow of this project also captures the change
  in training data.
@@ -87,7 +95,7 @@ Training data is also hashed to create a unique trained model file specific to t
 training data. Once re-trained, a new folder will be created and all test will be re-run
 using the latest model.
 
-## Authors and division of work:
+### Authors and division of work:
 Yuheng Chen:
 
 - Machine learning algorithms and environment packaging
