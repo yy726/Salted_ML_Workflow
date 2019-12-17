@@ -93,6 +93,7 @@ Sphinx = "==1.6.3"
 Werkzeug = "==0.16.0"
 cmake = "*"
 awscli = "*"
+pandas = "*"
 
 [requires]
 python_version = "3.7"

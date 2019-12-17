@@ -2,7 +2,7 @@ import argparse
 
 from luigi import build
 
-from .task import Aggregation
+from .task import Aggregation, DetectorTraining
 
 
 def main():
@@ -14,5 +14,5 @@ def main():
     dst_path = args.dst_path
 
     build([
-        Aggregation(raw_path, dst_path)
+        Aggregation(raw_path, dst_path),
     ], local_scheduler=True)
