@@ -6,13 +6,61 @@ import numpy as np
 from keras.callbacks import LearningRateScheduler, ModelCheckpoint
 from keras.optimizers import SGD, Adam
 from keras.utils import np_utils
-from wide_resnet import WideResNet
-from utils import load_data
+from .wide_resnet import WideResNet
+from .utils import load_data
 from keras.preprocessing.image import ImageDataGenerator
-from mixup_generator import MixupGenerator
-from random_eraser import get_random_eraser
+from .mixup_generator import MixupGenerator
+from .random_eraser import get_random_eraser
+
+
+import os
+import sys
+import glob
+import dlib
+import cv2
+
+# -*- coding: utf-8 -*-
+
 
 logging.basicConfig(level=logging.DEBUG)
+
+def trainOne(num_threads = 1, penalty = 5, train_path = 'data/face_train/', test_path = 'data/face_test/', model_name = './pretrained_models/detector1.svm'):
+    options = dlib.simple_object_detector_training_options()
+    options.add_left_right_image_flips = True
+
+    # modify the penalty to optimize training
+    options.C = penalty
+    # thread count for parallel training, best set to number of physical cores available
+    options.num_threads = num_threads
+    options.be_verbose = True
+
+    # get path
+    current_path = os.getcwd()
+    # import pdb
+    # pdb.set_trace()
+    train_folder = os.path.join(current_path, train_path)
+    test_folder = os.path.join(current_path, test_path)
+    train_xml_path = os.path.join(train_folder, 'face_train.xml')
+    test_xml_path = os.path.join(test_folder, 'face_test.xml')
+
+    print("training file path:" + train_xml_path)
+
+    print("testing file path:" + test_xml_path)
+
+    # training starts
+    print("start training:")
+    # dlib.train_simple_object_detector(train_xml_path, 'detector.svm', options)
+    dlib.train_simple_object_detector(train_xml_path, model_name, options)
+
+    # outputing training accuracy
+    # print("")  # Print blank line to create gap from previous output
+    # print("Training accuracy: {}".format(
+    #    dlib.test_simple_object_detector(train_xml_path, "./pretrained_models/detector.svm")))
+
+    # print("Testing accuracy: {}".format(
+    #    dlib.test_simple_object_detector(test_xml_path, "./pretrained_models/detector.svm")))
+
+
 
 
 def get_args():
