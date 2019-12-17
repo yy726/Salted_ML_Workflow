@@ -3,6 +3,15 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Salted_ML_Workflow](#salted_ml_workflow)
+  - [Introduction](#introduction)
+  - [Demo:](#demo)
+  - [Input and output](#input-and-output)
+    - [Detector](#detector)
+    - [Analyzer](#analyzer)
+  - [Workflow](#workflow)
+    - [Testing](#testing)
+    - [Training](#training)
+  - [Authors and division of work:](#authors-and-division-of-work)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
