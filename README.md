@@ -116,6 +116,7 @@ Yuheng Chen:
 Darcy Yao:
 
 - Project proposal and planning
-- Luigi implementation(testing)
+- Luigi implementation (testing)
+- Packaging the workflow into a workable envirnoment, using knowledge from class
 - Tests
-- Presentation recording
+- Slide deck making and presentation recording
